@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Prototype demo</title>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <script src="player.js"></script>
+</head>
+
+<body class="arena-bg">
+    <div id="goku" class="goku idle"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const goku = new Player(document.getElementById('goku'));
+            let currentMoveKey;
+            document.onkeydown = checkKey;
+            document.onkeyup = () => {
+                currentMoveKey = null;
+                goku.idle.apply(goku);
+            }
+            
+            function checkKey(e) {
+
+                e = e || window.event;
+                if (currentMoveKey !== e.keyCode && goku.currentMove === 'idle') {
+                    if (e.keyCode == '38') {
+
+                    } else if (e.keyCode == '40') {
+                        // implement sit
+                    } else if (e.keyCode == '37') {    
+                        animationFrame = requestAnimationFrame(goku.left.bind(goku));
+                    } else if (e.keyCode == '39') {
+                        animationFrame = requestAnimationFrame(goku.right.bind(goku));
+                    }
+                    //TODO implement more moves!! 
+                }
+                currentMoveKey = e.keyCode;
+            }
+        });
+    </script>
+</body>
+
+</html>
